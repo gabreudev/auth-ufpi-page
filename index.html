@@ -74,6 +74,16 @@
             <h2 class="text-xl sm:text-2xl font-bold text-slate-800 tracking-tight">Autenticação na Rede</h2>
           </div>
 
+          <!-- Notinha de Aviso sobre Credenciais -->
+          <div class="mb-5 p-3 rounded-lg bg-amber-50/90 border border-amber-200/90 text-amber-800 text-xs flex items-start gap-2.5 leading-relaxed">
+            <svg class="w-4 h-4 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div>
+              <strong class="font-semibold text-amber-900">Atenção:</strong> Certifique-se de que as suas credenciais estão certas, pois a página não avisará caso estejam erradas e redirecionará mesmo assim.
+            </div>
+          </div>
+
           <!-- Formulário de Login -->
           <form id="loginForm" method="POST" action="https://login.picos.ufpi.br:6082/php/uid.php?vsys=1&rule=0" enctype="application/x-www-form-urlencoded" class="space-y-4">
             
@@ -223,6 +233,11 @@
 
       // Salvar preferência de usuário ao submeter
       loginForm.addEventListener('submit', () => {
+        const escapeUserInput = loginForm.querySelector('input[name="escapeUser"]');
+        if (escapeUserInput) {
+          escapeUserInput.value = userInput.value.trim().replace(/\\/g, '\\\\');
+        }
+
         if (rememberCheckbox.checked) {
           localStorage.setItem('ufpi_auth_user', userInput.value.trim());
         } else {
