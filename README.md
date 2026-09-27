@@ -2,7 +2,8 @@
 
 Página alternativa de emergência para login direto na rede da UFPI Picos, em caso de instabilidade na página original.
 
-Totalmente estática e pronta para o **GitHub Pages**.
+🔗 **Link de Acesso (GitHub Pages)**:
+👉 **[https://gabreudev.github.io/auth-ufpi-page/](https://gabreudev.github.io/auth-ufpi-page/)**
 
 ---
 
