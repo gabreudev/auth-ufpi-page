@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso à Rede — UFPI Picos</title>
+  <meta name="description" content="Página de login e autenticação na rede institucional da UFPI Campus Picos.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231b4d89'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  
+  <!-- Tailwind CSS via CDN Oficial -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ufpi: {
+              DEFAULT: '#1b4d89',
+              dark: '#133967',
+              light: '#2563eb',
+              gold: '#e5a823',
+              goldDark: '#c68d14',
+              surface: '#f8fafc',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col justify-between selection:bg-[#1b4d89] selection:text-white font-sans antialiased">
+
+  <!-- Faixa de Topo em Azul -->
+  <header class="w-full bg-[#1b4d89] text-white shadow-md border-b-4 border-[#e5a823]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-bold text-sm sm:text-base tracking-wide leading-tight">UFPI — Picos</span>
+          <p class="text-[11px] text-blue-100 font-normal">Login na Rede</p>
+        </div>
+      </div>
+      
+    </div>
+  </header>
+
+  <!-- Área Central / Card de Login -->
+  <main class="flex-1 flex items-center justify-center px-4 py-10 sm:py-16">
+    <div class="w-full max-w-md">
+
+      <!-- Card Branco com visual limpo institucional -->
+      <div class="bg-white rounded-2xl shadow-xl shadow-slate-300/60 border border-slate-200/90 overflow-hidden">
+        
+        <!-- Faixa superior azul e dourada do Card -->
+        <div class="h-2 w-full bg-gradient-to-r from-[#1b4d89] via-[#2563eb] to-[#e5a823]"></div>
+
+        <div class="p-7 sm:p-9">
+          
+          <!-- Cabeçalho do Card -->
+          <div class="text-center mb-7">
+            <!-- Brasão Centralizado -->
+            <div class="mx-auto w-16 h-16 rounded-2xl bg-[#eef4fb] border border-[#d0e1f3] flex items-center justify-center text-[#1b4d89] mb-3.5 shadow-sm">
+              <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 tracking-tight">Autenticação na Rede</h2>
+          </div>
+
+          <!-- Formulário de Login -->
+          <form id="loginForm" method="POST" action="https://login.picos.ufpi.br:6082/php/uid.php?vsys=1&rule=0" enctype="application/x-www-form-urlencoded" class="space-y-4">
+            
+            <!-- CAMPOS OCULTOS EXIGIDOS PELO FIREWALL UFPI -->
+            <input type="hidden" name="buttonClicked" value="0">
+            <input type="hidden" name="redirect_url" value="https://www.globo.com">
+            <input type="hidden" name="err_flag" value="0">
+            <input type="hidden" name="inputStr" value="">
+            <input type="hidden" name="escapeUser" value="">
+            <input type="hidden" name="preauthid" value="">
+            <input type="hidden" name="ok" value="Login">
+
+            <!-- Campo Usuário -->
+            <div>
+              <label for="user" class="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-wider">
+                Usuário
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <input 
+                  type="text" 
+                  name="user" 
+                  id="user" 
+                  required 
+                  autocomplete="username" 
+                  placeholder="Seu usuário de acesso"
+                  class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b4d89]/25 focus:border-[#1b4d89] focus:bg-white transition-all shadow-sm"
+                >
+              </div>
+            </div>
+
+            <!-- Campo Senha -->
+            <div>
+              <label for="passwd" class="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-wider">
+                Senha
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </div>
+                <input 
+                  type="password" 
+                  name="passwd" 
+                  id="passwd" 
+                  required 
+                  autocomplete="current-password" 
+                  placeholder="••••••••••••"
+                  class="w-full pl-10 pr-11 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1b4d89]/25 focus:border-[#1b4d89] focus:bg-white transition-all shadow-sm"
+                >
+                <!-- Botão Mostrar/Ocultar Senha -->
+                <button 
+                  type="button" 
+                  id="btnTogglePass" 
+                  class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+                  title="Mostrar/Ocultar senha"
+                >
+                  <svg id="eyeIcon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  <svg id="eyeOffIcon" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Lembrar Usuário -->
+            <div class="flex items-center justify-between text-xs pt-1">
+              <label class="flex items-center gap-2 cursor-pointer select-none text-slate-600 hover:text-slate-800">
+                <input type="checkbox" id="rememberUser" class="rounded border-slate-300 text-[#1b4d89] focus:ring-[#1b4d89]/30 w-4 h-4 cursor-pointer">
+                <span>Lembrar meu usuário</span>
+              </label>
+            </div>
+
+            <!-- Botão Entrar -->
+            <button 
+              type="submit" 
+              id="btnLogin" 
+              class="w-full mt-3 py-3 px-4 rounded-lg bg-[#1b4d89] hover:bg-[#153e6f] active:bg-[#0f2e54] text-white font-semibold text-sm shadow-md shadow-blue-900/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Conectar à Rede</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </form>
+
+        </div>
+
+        <!-- Rodapé do Card -->
+        <div class="bg-slate-50 px-6 py-2.5 border-t border-slate-100 text-center text-xs text-slate-400">
+          CSHNB — Picos
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Rodapé Simples -->
+  <footer class="w-full py-3 text-center text-xs text-slate-400">
+    Página de acesso rápido à rede • CSHNB Picos
+  </footer>
+
+  <!-- Script Limpo e Leve -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm');
+      const userInput = document.getElementById('user');
+      const passwdInput = document.getElementById('passwd');
+      const rememberCheckbox = document.getElementById('rememberUser');
+      const btnTogglePass = document.getElementById('btnTogglePass');
+      const eyeIcon = document.getElementById('eyeIcon');
+      const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+      // Recupera usuário salvo
+      const savedUser = localStorage.getItem('ufpi_auth_user');
+      if (savedUser) {
+        userInput.value = savedUser;
+        rememberCheckbox.checked = true;
+        passwdInput.focus();
+      } else {
+        userInput.focus();
+      }
+
+      // Alternar visualização da senha
+      btnTogglePass.addEventListener('click', () => {
+        if (passwdInput.type === 'password') {
+          passwdInput.type = 'text';
+          eyeIcon.classList.add('hidden');
+          eyeOffIcon.classList.remove('hidden');
+        } else {
+          passwdInput.type = 'password';
+          eyeIcon.classList.remove('hidden');
+          eyeOffIcon.classList.add('hidden');
+        }
+      });
+
+      // Salvar preferência de usuário ao submeter
+      loginForm.addEventListener('submit', () => {
+        if (rememberCheckbox.checked) {
+          localStorage.setItem('ufpi_auth_user', userInput.value.trim());
+        } else {
+          localStorage.removeItem('ufpi_auth_user');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
